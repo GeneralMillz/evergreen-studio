@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evergreen Studio - Production control center for creative excellence">
+  <meta name="theme-color" content="#E91E63">
+  <meta property="og:title" content="Evergreen Studio Dashboard">
+  <meta property="og:description" content="Production control center for video and creative projects">
+  <meta property="og:url" content="https://studio.evergreenmediadesign.com">
+  <title>Evergreen Studio | Production Dashboard</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <style>
+    :root {
+      --primary: #E91E63;
+      --primary-dark: #C2185B;
+      --secondary: #673AB7;
+      --bg: #121212;
+      --text: #FFFFFF;
+      --card-bg: #1E1E1E;
+      --accent-light: rgba(233, 30, 99, 0.1);
+      --border-accent: rgba(233, 30, 99, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, #2D1B3D 100%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+
+    .logo {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      animation: flicker 3s ease-in-out infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      color: #AAAAAA;
+      font-size: 1.125rem;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .metric-card {
+      background: var(--accent-light);
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      color: #AAAAAA;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .features-section {
+      margin: 2rem 0;
+    }
+
+    .features-section h2 {
+      color: var(--primary);
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(233, 30, 99, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .feature-description {
+      color: #888888;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .info-box {
+      background: var(--accent-light);
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .info-box h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .info-box p {
+      color: #CCCCCC;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      padding: 0.875rem 1.75rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-accent);
+      color: #888888;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">🎬</div>
+      <h1>Evergreen Studio</h1>
+      <p class="subtitle">Production Control Center</p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">12</div>
+        <div class="metric-label">Active Projects</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">87%</div>
+        <div class="metric-label">Completion Rate</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">24</div>
+        <div class="metric-label">Assets in Queue</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">5.2TB</div>
+        <div class="metric-label">Storage Used</div>
+      </div>
+    </div>
+
+    <div class="features-section">
+      <h2>Studio Features</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="feature-icon">🎥</span>
+          <div class="feature-title">Video Production Pipeline</div>
+          <div class="feature-description">
+            Track projects from concept to delivery with detailed workflow management.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🎨</span>
+          <div class="feature-title">Creative Asset Management</div>
+          <div class="feature-description">
+            Organize, version control, and search all media files and creative assets.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">👥</span>
+          <div class="feature-title">Team Collaboration</div>
+          <div class="feature-description">
+            Real-time updates, comments, and client feedback integration.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📊</span>
+          <div class="feature-title">Production Analytics</div>
+          <div class="feature-description">
+            Monitor efficiency, timelines, and team productivity metrics.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📅</span>
+          <div class="feature-title">Timeline Management</div>
+          <div class="feature-description">
+            Visual timelines, deadline tracking, and resource allocation.
+          </div>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🎯</span>
+          <div class="feature-title">Quality Control</div>
+          <div class="feature-description">
+            Review, approve, and deliver with built-in quality assurance workflows.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box">
+      <h3>🎬 Studio Dashboard Overview</h3>
+      <p>
+        The Evergreen Studio Dashboard provides a centralized production hub for managing video
+        production workflows, tracking project status, coordinating with team members, and delivering
+        exceptional creative work. From pre-production planning to final delivery, everything is
+        streamlined in one powerful, intuitive interface.
+      </p>
+    </div>
+
+    <div class="cta-buttons">
+      <a href="https://evergreenmediadesign.com" class="btn btn-primary">
+        ← Back to Main Site
+      </a>
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2026 Evergreen Media Design. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
